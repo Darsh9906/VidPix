@@ -9,6 +9,7 @@ const ResultGrid = () => {
     const dispatch = useDispatch()
     const { query, activeTab, results, loading, error } = useSelector((store) => store.search)
 
+    console.log(import.meta.env.VITE_PEXELS_API_KEY);
 
     useEffect(() => {
         if(!query) return
@@ -51,8 +52,6 @@ const ResultGrid = () => {
 
                 if (activeTab == 'gif') {
                     let response = await fetchGif(query)
-
-                    console.log(response.data);
                     
                      
                     data = response.data.map((item) => ({

@@ -15,14 +15,14 @@ const response = await axios.get(`https://api.unsplash.com/search/photos`,{
 return response.data
 
 }
-
+  
 
 export const fetchVideo = async (query,page=1,per_page=20) => {
 
   const response = await axios.get(`https://api.pexels.com/videos/search`,{
 
     params:{query,page,per_page},
-    headers:{Authorization: `Client-ID ${PEXELS_KEY}`}
+    headers:{Authorization: PEXELS_KEY}
   })
 
   return response.data

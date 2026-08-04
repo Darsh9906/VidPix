@@ -21,7 +21,7 @@ import { setQuery } from '../redux/features/searchSlice'
 
   return (
     <div >
-      <form className='flex bg-gray-900 gap-5 p-10' onSubmit={handleSubmit} >
+      <form className='flex bg-[#18181B] gap-5 p-10' onSubmit={handleSubmit} >
 
           <input 
           required value={val} onChange={(e) => {
@@ -31,7 +31,7 @@ import { setQuery } from '../redux/features/searchSlice'
             
           }} 
 
-          className='w-full p-2 border-2 border-white outline-none rounded' type="text" placeholder='Enter your name '
+          className='w-full p-2 border-2 border-white outline-none rounded' type="text" placeholder='Search millions of media...'
           />
 
           <button 

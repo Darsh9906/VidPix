@@ -3,7 +3,7 @@ import { Bookmark } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { addCollection, addedToast } from '../redux/features/collectionSlice';
 
-const ResultCard = ({item}) => {
+const   ResultCard = ({item}) => {
 
  const dispatch = useDispatch()
 
@@ -30,8 +30,8 @@ const ResultCard = ({item}) => {
 
           addToCollection(item)
         }}
-        className='cursor-pointer active:scale-95 text-shadow-black flex translate-y-1'>
-          <Bookmark className='text-shadow-gray-950  hover:text-gray-900' strokeWidth={2.7} size={20}/>
+        className='cursor-pointer active:scale-95 text-shadow-black flex translate-y-1 rounded-full p-1 bg-white'>
+          <Bookmark className='text-gray-700  hover:text-gray-950 hover:scale-110' strokeWidth={2.7} size={20}/>
           </button>
       </div>
 

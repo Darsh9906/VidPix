@@ -35,8 +35,8 @@ const CollectionCard = ({item}) => {
 
           
         }}
-        className='cursor-pointer active:scale-95 text-shadow-black flex translate-y-1'>
-          <BookmarkOff className='text-shadow-gray-950  hover:text-red-700' strokeWidth={2.7} size={20}/> 
+        className='cursor-pointer text-shadow-black flex translate-y-1 bg-white rounded-full p-1 '>
+          <BookmarkOff className='text-gray-700 rounded-2xl  hover:text-gray-950 hover:scale-110' strokeWidth={2.7} size={20}/> 
           </button>
       </div>
 
