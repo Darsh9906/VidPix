@@ -3,13 +3,13 @@ import { fetchPhoto, fetchGif, fetchVideo } from '../api/mediaApi'
 import { setResults, setError, setLoading } from '../redux/features/searchSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import ResultCard from './ResultCard'
+import Loader from './Loader'
+import ErrorState from './ErrorState'
 
 const ResultGrid = () => {
 
     const dispatch = useDispatch()
     const { query, activeTab, results, loading, error } = useSelector((store) => store.search)
-
-    console.log(import.meta.env.VITE_PEXELS_API_KEY);
 
     useEffect(() => {
         if(!query) return
@@ -53,6 +53,8 @@ const ResultGrid = () => {
                 if (activeTab == 'gif') {
                     let response = await fetchGif(query)
                     
+                    console.log(response.data);
+                    
                      
                     data = response.data.map((item) => ({
 
@@ -60,8 +62,12 @@ const ResultGrid = () => {
                         type: 'gif',
                         title: item.title || 'GIF',
                         thumbnail: item.images.downsized.url,
-                        src: item.url
+                        src: item.url,
+                        url: item.url
+
+                        
                     }))
+
 
                 }
 
@@ -79,9 +85,9 @@ const ResultGrid = () => {
     }, [query, activeTab,dispatch])
 
 
-    if (error) return <h1>Error</h1>
+    if (error) return <h1 className='flex justify-center items-center '><ErrorState /></h1>
 
-    if (loading) return <h1>Loading...</h1>
+    if (loading) return <h1 className='flex justify-center items-center py-20'><Loader /></h1>
 
 
     return (

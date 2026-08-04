@@ -14,6 +14,10 @@ const   ResultCard = ({item}) => {
   
  }
 
+ 
+ console.log(item.url);
+ 
+
   return (
     <div className='relative w-[18vw] h-60 bg-white rounded-md overflow-hidden '>
 
@@ -23,8 +27,8 @@ const   ResultCard = ({item}) => {
         {item.type == 'gif'?<img className='h-full w-full object-center object-cover' src={item.thumbnail} alt="img"/>:''}
       </a>
 
-      <div className='bg-linear-[transparent,black] absolute bottom-0 py-4 px-2 w-full flex justify-between '>
-        <h1 className='text-lg w-[80%] font-semibold capitalize h-10'>{item.title}</h1>
+      <div className='bg-linear-[transparent,black] absolute bottom-0 py-4 px-2 w-full flex justify-between'>
+        <h1 className='text-lg w-[80%] font-semibold capitalize h-10'>{item.title}</h1> 
         <button 
         onClick={() => {
 
