@@ -91,7 +91,7 @@ const ResultGrid = () => {
 
 
     return (
-        <div className='flex justify-between flex-wrap gap-4 overflow-auto px-5 rounded'> 
+        <div className='flex justify-between flex-wrap gap-4 overflow-auto px-5 rounded '> 
             {results.map((item, idx) => {
 
                 return <h1 key={idx}>

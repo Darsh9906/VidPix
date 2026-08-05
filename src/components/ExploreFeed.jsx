@@ -87,7 +87,7 @@ const ExploreFeed = () => {
 
   return (
     <div className='px-6'>
-      <h1 className='text-3xl text-white font-bold mb-5'>
+      <h1 className='text-3xl text-white font-bold mb-5 mt-8'>
        Only Trendings
       </h1>
 

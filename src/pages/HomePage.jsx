@@ -12,12 +12,17 @@ const HomePage = () => {
 
     return (
         <div>
-            
+
             <SearchBar />
 
-            <Tabs />
 
-            {query === '' ? <ExploreFeed /> : <ResultGrid />} 
+            {query === '' ? (<ExploreFeed />
+            ) : (
+                <>
+                    <Tabs />
+                    <ResultGrid />
+                </>
+            )}
 
         </div>
     )
