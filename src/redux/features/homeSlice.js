@@ -17,7 +17,7 @@ const homeSlice = createSlice({
 
     reducers: {
 
-        setLoading(){
+        setLoading(state){
             state.loading = true;
             state.error = null;
         },

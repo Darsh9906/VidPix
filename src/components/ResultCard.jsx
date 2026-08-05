@@ -14,9 +14,7 @@ const   ResultCard = ({item}) => {
   
  }
 
- 
- console.log(item.url);
- 
+  
 
   return (
     <div className='relative w-[18vw] h-60 bg-white rounded-md overflow-hidden '>
