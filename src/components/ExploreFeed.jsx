@@ -88,7 +88,7 @@ const ExploreFeed = () => {
   return (
     <div className='px-6'>
       <h1 className='text-3xl text-white font-bold mb-5 mt-8'>
-       Only Trendings
+       🔥Trending Now
       </h1>
 
       <div className='flex justify-start flex-wrap gap-4'>

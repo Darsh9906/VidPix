@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setQuery } from '../redux/features/searchSlice'
+import { Search } from 'lucide-react'
 
 
  const SearchBar = () => {
@@ -20,7 +21,7 @@ import { setQuery } from '../redux/features/searchSlice'
  }
 
   return (
-    <div >
+    <div className='bg-[#212121] py-2' >
 
       <div className='flex flex-col gap-5 mb-5 justify-between items-center'>
 
@@ -34,8 +35,9 @@ import { setQuery } from '../redux/features/searchSlice'
     </div>
 
 
-      <form className='flex bg-[#18181B] gap-5 p-10' onSubmit={handleSubmit} >
+      <form className='flex justify-center gap-5 p-10' onSubmit={handleSubmit} >
 
+       <Search className='absolute left-78 top-62 '/>
           <input 
           required value={val} onChange={(e) => {
 
@@ -44,11 +46,11 @@ import { setQuery } from '../redux/features/searchSlice'
             
           }} 
 
-          className='w-full p-4 border-2 relative border-white outline-none rounded' type="text" placeholder='Search millions of media...'
+          className='w-[60%] p-4 border relative border-zinc-700 outline-none rounded' type="text" placeholder='         Search photos, videos & GIFs...'
           />
 
           <button 
-          className='active:scale-95 cursor-pointer py-2.5 border-0 border-white outline-none rounded absolute right-12 top-58 outline-0 px-5 bg-green-700'>
+          className='active:scale-95 cursor-pointer py-2.5 border-0 border-white outline-none rounded-md absolute right-76 top-59.5 outline-0 px-5 bg-green-700'>
             Search
           </button>
 
