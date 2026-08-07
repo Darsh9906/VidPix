@@ -21,6 +21,19 @@ import { setQuery } from '../redux/features/searchSlice'
 
   return (
     <div >
+
+      <div className='flex flex-col gap-5 mb-5 justify-between items-center'>
+
+      <h1 className='font-extrabold text-4xl'>
+        Discover <span className='text-green-500'> Photos, Videos & GIFs </span>
+      </h1>
+
+      <h2>
+       Search millions of high-quality media from one place.
+      </h2>
+    </div>
+
+
       <form className='flex bg-[#18181B] gap-5 p-10' onSubmit={handleSubmit} >
 
           <input 
@@ -31,11 +44,11 @@ import { setQuery } from '../redux/features/searchSlice'
             
           }} 
 
-          className='w-full p-2 border-2 border-white outline-none rounded' type="text" placeholder='Search millions of media...'
+          className='w-full p-4 border-2 relative border-white outline-none rounded' type="text" placeholder='Search millions of media...'
           />
 
           <button 
-          className='active:scale-95 cursor-pointer p-2 border-2 border-white outline-none rounded'>
+          className='active:scale-95 cursor-pointer py-2.5 border-0 border-white outline-none rounded absolute right-12 top-58 outline-0 px-5 bg-green-700'>
             Search
           </button>
 
