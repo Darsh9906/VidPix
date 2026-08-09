@@ -26,18 +26,39 @@ const CollectionCard = ({item}) => {
         {item.type == 'gif'?<img className='h-full w-full object-center object-cover' src={item.thumbnail} alt="img"/>:''}
       </a>
 
+      <button
+    onClick={() => removeItem(item)}
+    className="
+      absolute
+      top-3
+      right-3
+      z-10
+      flex
+      items-center
+      justify-center
+      p-2
+      rounded-full
+      bg-black/60
+      backdrop-blur-md
+      text-white
+      cursor-pointer
+      hover:bg-red-500
+      hover:scale-110
+      active:scale-95
+      transition-all
+      duration-200
+    "
+  >
+    <BookmarkOff
+      size={19}
+      strokeWidth={2.5}
+    />
+  </button>
+
+
       <div className='bg-linear-[transparent,black] absolute bottom-0 py-4 px-2 w-full flex justify-between '>
         <h1 className='text-lg w-[80%] font-semibold capitalize h-10'>{item.title}</h1>
-        <button 
-        onClick={() => {
-
-          removeItem(item)
-
-          
-        }}
-        className='cursor-pointer text-shadow-black flex translate-y-1 bg-white rounded-full p-1 '>
-          <BookmarkOff className='text-gray-700 rounded-2xl  hover:text-gray-950 hover:scale-110' strokeWidth={2.7} size={20}/> 
-          </button>
+        
       </div>
 
       </div>

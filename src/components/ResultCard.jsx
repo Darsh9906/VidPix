@@ -25,16 +25,39 @@ const   ResultCard = ({item}) => {
         {item.type == 'gif'?<img className='h-full w-full object-center object-cover' src={item.thumbnail} alt="img"/>:''}
       </a>
 
+       <button
+    onClick={() => addToCollection(item)}
+    className="
+      absolute
+      top-3
+      right-3
+      z-10
+      flex
+      items-center
+      justify-center
+      p-2
+      rounded-full
+      bg-black/60
+      backdrop-blur-md
+      text-white
+      cursor-pointer
+      hover:bg-green-600
+      hover:scale-110
+      active:scale-95
+      transition-all
+      duration-200
+    "
+  >
+    <Bookmark
+      size={19}
+      strokeWidth={2.5}
+    />
+  </button>
+
+
       <div className='bg-linear-[transparent,black] absolute bottom-0 py-4 px-2 w-full flex justify-between'>
         <h1 className='text-lg w-[80%] font-semibold capitalize h-10'>{item.title}</h1> 
-        <button 
-        onClick={() => {
-
-          addToCollection(item)
-        }}
-        className='cursor-pointer active:scale-95 text-shadow-black flex translate-y-1 rounded-full p-1 bg-white'>
-          <Bookmark className='text-gray-700  hover:text-gray-950 hover:scale-110' strokeWidth={2.7} size={20}/>
-          </button>
+        
       </div>
 
     </div>
