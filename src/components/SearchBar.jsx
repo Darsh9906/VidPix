@@ -4,57 +4,66 @@ import { setQuery } from '../redux/features/searchSlice'
 import { Search } from 'lucide-react'
 
 
- const SearchBar = () => {
+const SearchBar = () => {
 
   const [val, setVal] = useState('')
 
   const dispatch = useDispatch();
 
- const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
 
-  e.preventDefault();
+    e.preventDefault();
 
-  dispatch(setQuery(val))
+    dispatch(setQuery(val))
 
-  setVal('')
-        
- }
+    setVal('')
+
+  }
 
   return (
-    <div className='bg-[#212121] py-2' >
+    <div className=' bg-linear-120 bg-linear-[120deg,#004e00,black,black,#004e00] py-3 border border-gray-900' >
 
       <div className='flex flex-col gap-5 mb-5 justify-between items-center'>
 
-      <h1 className='font-extrabold text-4xl'>
-        Discover <span className='text-green-500'> Photos, Videos & GIFs </span>
-      </h1>
+        <h1 className='font-extrabold text-4xl'>
+          Discover <span className='text-green-500'> Photos, Videos & GIFs </span>
+        </h1>
 
-      <h2>
-       Search millions of high-quality media from one place.
-      </h2>
-    </div>
+        <h2>
+          Search millions of high-quality media from one place. 
+        </h2>
 
+        
+      </div >
 
-      <form className='flex justify-center gap-5 p-10' onSubmit={handleSubmit} >
+      <div className='flex justify-center'>
+      <form className='flex items-center relative w-[80%] justify-center gap-5 p-10' onSubmit={handleSubmit} >
 
-       <Search className='absolute left-78 top-62 '/>
-          <input 
+        <div className="relative w-[90%] md:w-[70%] lg:w-[60%]">
+        <Search
+        size={22}
+        className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400"
+      />
+
+        <input
           required value={val} onChange={(e) => {
 
             setVal(e.target.value);
-            
-            
-          }} 
 
-          className='w-[60%] p-4 border relative border-zinc-700 outline-none rounded' type="text" placeholder='         Search photos, videos & GIFs...'
-          />
 
-          <button 
-          className='active:scale-95 cursor-pointer py-2.5 border-0 border-white outline-none rounded-md absolute right-76 top-59.5 outline-0 px-5 bg-green-700'>
-            Search
-          </button>
+          }}
 
+          className='w-full p-4 pl-12 pr-28 border border-zinc-700 bg-zinc-900 text-white outline-none rounded-xl focus:border-green-600 focus:ring-2 focus:ring-green-600/20' type="text" placeholder='Search photos, videos & GIFs...'
+        />
+       
+
+        <button
+          className='px-6 py-3 rounded-md bg-green-600 hover:bg-green-700 text-white cursor-pointer active:scale-95 transition absolute right-2 top-1/2 -translate-y-1/2'>
+          Search
+        </button>
+             </div>
       </form>
+      </div>
     </div>
   )
 }

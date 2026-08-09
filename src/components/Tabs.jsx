@@ -19,7 +19,7 @@ const Tabs = () => {
                         onClick={() => {
                             dispatch(setActiveTabs(elem))
                         }}
-                        className={`${(activeTab==elem?'bg-green-900 ':'bg-gray-700 hover:bg-green-900')} transition px-5 py-2 rounded uppercase cursor-pointer active:scale-95`}
+                        className={`${(activeTab==elem?'bg-green-800 ':'bg-[#212121d8] hover:bg-green-800')} transition px-5 py-2 rounded-full uppercase cursor-pointer active:scale-95 `}
                         key={idx}>
                         {elem}
                     </button>

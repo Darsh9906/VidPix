@@ -9,7 +9,7 @@ const Navbar = () => {
 
                 <div className='flex gap-4 text-sm'>
                     <Link className='bg-white text-black py-1.5 px-4 font-medium rounded active:scale-95 hover:bg-green-600 hover:text-white' to='/'>Search</Link>
-                    <Link className='bg-white text-black py-1.5 px-4 font-medium rounded active:scale-95 hover:bg-green-600 hover:text-white' to='/collection'>Collection</Link>
+                    <Link className='bg-green-600 text-white py-1.5 px-4 font-medium rounded active:scale-95 hover:bg-green-700 hover:text-white' to='/collection'>Collection</Link>
                 </div>
             </div>
     </div>
