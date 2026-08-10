@@ -21,7 +21,7 @@ const SearchBar = () => {
   }
 
   return (
-    <div className=' bg-linear-120 bg-linear-[120deg,#004e00,black,black,#004e00] py-3 border border-gray-900' >
+    <div className=' bg-linear-120 bg-linear-[120deg,#004700,black,black,#004e00] mt-2 py-4 border border-gray-900' >
 
       <div className='flex flex-col gap-5 mb-5 justify-between items-center'>
 
