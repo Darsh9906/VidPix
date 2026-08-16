@@ -459,16 +459,6 @@ UI/UX Improvements
 Git & GitHub
 ```
 
----
-
-## 🤝 Contributing
-
-This project was primarily created as a personal learning project, but suggestions and improvements are welcome.
-
-If you have an idea that could improve VidPix, feel free to open an issue or submit a pull request.
-
----
-
 ## 📄 License
 
 This project is created for learning and portfolio purposes.
