@@ -1,66 +1,85 @@
 import React from 'react'
-import { Bookmark } from 'lucide-react';
-import { useDispatch } from 'react-redux';
-import { addCollection, addedToast } from '../redux/features/collectionSlice';
+import { Bookmark, Play } from 'lucide-react'
+import { useDispatch } from 'react-redux'
+import {
+  addCollection,
+  addedToast
+} from '../redux/features/collectionSlice'
 
-const   ResultCard = ({item}) => {
+const ResultCard = ({ item }) => {
+  const dispatch = useDispatch()
 
- const dispatch = useDispatch()
+  const addToCollection = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
 
- const addToCollection = (item) => {
-
-  dispatch(addCollection(item))
-  dispatch(addedToast())
-  
- }
-
-  
+    dispatch(addCollection(item))
+    dispatch(addedToast())
+  }
 
   return (
-    <div className='relative w-[18vw] h-60 bg-white rounded-md overflow-hidden '>
+    <article className="group relative mb-4 break-inside-avoid overflow-hidden rounded-xl bg-zinc-900">
 
-      <a href={item.url} target='_blank' >
-        {item.type == 'photo'?<img className=' h-full w-full object-center object-cover' src={item.src} alt="img" />:''}
-        {item.type == 'video'? <video className='h-full w-full object-center object-cover' muted loop autoPlay src={item.src}></video>:''}
-        {item.type == 'gif'?<img className='h-full w-full object-center object-cover' src={item.thumbnail} alt="img"/>:''}
+      <a
+        href={item.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block"
+      >
+        {item.type === 'photo' && (
+          <img
+            src={item.src}
+            alt={item.title || 'Photo'}
+            loading="lazy"
+            className="block w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        )}
+
+        {item.type === 'video' && (
+          <div className="relative">
+            <video
+              src={item.src}
+              poster={item.thumbnail}
+              muted
+              loop
+              autoPlay
+              playsInline
+              preload="metadata"
+              className="block w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+
+            <div className="absolute left-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md">
+              <Play size={14} fill="currentColor" />
+            </div>
+          </div>
+        )}
+
+        {item.type === 'gif' && (
+          <img
+            src={item.src || item.thumbnail}
+            alt={item.title || 'GIF'}
+            loading="lazy"
+            className="block w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        )}
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent px-3 pb-3 pt-14 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <p className="truncate text-sm font-medium text-white">
+            {item.title || 'Untitled'}
+          </p>
+        </div>
       </a>
 
-       <button
-    onClick={() => addToCollection(item)}
-    className="
-      absolute
-      top-3
-      right-3
-      z-10
-      flex
-      items-center
-      justify-center
-      p-2
-      rounded-full
-      bg-black/60
-      backdrop-blur-md
-      text-white
-      cursor-pointer
-      hover:bg-green-600
-      hover:scale-110
-      active:scale-95
-      transition-all
-      duration-200
-    "
-  >
-    <Bookmark
-      size={19}
-      strokeWidth={2.5}
-    />
-  </button>
+      <button
+        type="button"
+        onClick={addToCollection}
+        aria-label="Save to collection"
+        className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-all duration-200 hover:bg-green-600 hover:scale-105 active:scale-95"
+      >
+        <Bookmark size={18} strokeWidth={2.3} />
+      </button>
 
-
-      <div className='bg-linear-[transparent,black] absolute bottom-0 py-4 px-2 w-full flex justify-between'>
-        <h1 className='text-lg w-[80%] font-semibold capitalize h-10'>{item.title}</h1> 
-        
-      </div>
-
-    </div>
+    </article>
   )
 }
 
