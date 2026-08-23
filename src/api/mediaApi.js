@@ -22,11 +22,7 @@ export const fetchPhoto = async (query, page = 1, per_page = 20) => {
   return response.data;
 };
 
-export const fetchVideo = async (
-  query,
-  page = 1,
-  per_page = 20
-) => {
+export const fetchVideo = async (query, page = 1, per_page = 20) => {
   const response = await axios.get(
     'https://api.pexels.com/videos/search',
     {
@@ -44,11 +40,7 @@ export const fetchVideo = async (
   return response.data;
 };
 
-export const fetchGif = async (
-  query,
-  page = 1,
-  limit = 20
-) => {
+export const fetchGif = async (query, page = 1, limit = 20) => {
   const response = await axios.get(
     'https://api.giphy.com/v1/gifs/search',
     {

@@ -1,115 +1,129 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import React, { useEffect } from 'react'
+import { fetchPhoto, fetchGif, fetchVideo } from '../api/mediaApi'
 import {
-  fetchPhoto,
-  fetchVideo,
-  fetchGif,
-} from '../api/mediaApi';
-
-import {
-  setResults,
-  setError,
-  setLoading,
-} from '../redux/features/searchSlice';
-
-import ErrorState from './ErrorState';
-import MediaGrid from './MediaGrid';
+    setResults,
+    setError,
+    setLoading
+} from '../redux/features/searchSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import ResultCard from './ResultCard'
+import Loader from './Loader'
+import ErrorState from './ErrorState'
 
 const ResultGrid = () => {
-  const dispatch = useDispatch();
 
-  const {
-    query,
-    activeTab,
-    results,
-    loading,
-    error,
-  } = useSelector((state) => state.search);
+    const dispatch = useDispatch()
 
- useEffect(() => {
-  console.log("SEARCH EFFECT RUNNING");
-  console.log("QUERY:", query);
-  console.log("ACTIVE TAB:", activeTab);
+    const {
+        query,
+        activeTab,
+        results,
+        loading,
+        error
+    } = useSelector((store) => store.search)
 
-  if (!query) return;
+    useEffect(() => {
 
-  const getData = async () => {
-    try {
-      dispatch(setLoading());
+        if (!query) return
 
-      let data = [];
+        const getData = async () => {
 
-      if (activeTab === 'photos') {
-        const response = await fetchPhoto(query);
+            try {
 
-        console.log("UNSPLASH RESPONSE:", response);
-        console.log("UNSPLASH RESULTS:", response.results);
+                dispatch(setLoading())
 
-        data = (response.results || [])
-          .filter((item) => item.urls?.regular)
-          .map((item) => ({
-            id: item.id,
-            type: 'photo',
-            title: item.alt_description || item.description || 'Photo',
-            thumbnail: item.urls?.small,
-            src: item.urls?.regular,
-            url: item.links?.html,
-          }));
+                let data = []
 
-        console.log("MAPPED PHOTO DATA:", data);
-      }
+                if (activeTab === 'photos') {
 
-      dispatch(setResults(data));
+                    const response = await fetchPhoto(query)
 
-    } catch (err) {
-      console.error("SEARCH ERROR:", err);
-      dispatch(setError(err.message));
+                    data = response.results.map((item) => ({
+                        id: item.id,
+                        type: 'photo',
+                        title: item.alt_description || item.description || 'Photo',
+                        thumbnail: item.urls.thumb,
+                        src: item.urls.full,
+                        url: item.links.html
+                    }))
+                }
+
+                if (activeTab === 'videos') {
+
+                    const response = await fetchVideo(query)
+
+                    data = response.videos.map((item) => ({
+                        id: item.id,
+                        type: 'video',
+                        title: item.user?.name || 'Video',
+                        thumbnail: item.image,
+                        src: item.video_files?.[0]?.link,
+                        url: item.url
+                    }))
+                }
+
+                if (activeTab === 'gif') {
+
+                    const response = await fetchGif(query)
+
+                    data = response.data.map((item) => ({
+                        id: item.id,
+                        type: 'gif',
+                        title: item.title || 'GIF',
+                        thumbnail: item.images?.downsized?.url,
+                        src: item.images?.original?.url,
+                        url: item.url
+                    }))
+                }
+
+                dispatch(setResults(data))
+
+            } catch (err) {
+
+                console.error(err)
+
+                dispatch(setError(err.message))
+            }
+        }
+
+        getData()
+
+    }, [query, activeTab, dispatch])
+
+
+    if (error) {
+        return (
+            <div className="flex justify-center py-20">
+                <ErrorState />
+            </div>
+        )
     }
-  };
 
-  getData();
+    if (loading) {
+        return (
+            <div className="flex justify-center py-20">
+                <Loader />
+            </div>
+        )
+    }
 
-}, [query, activeTab, dispatch]);
 
-  if (loading) {
     return (
-      <section className="px-5 py-8 sm:px-8">
-        <div className="mb-7">
-          <div className="h-9 w-52 animate-pulse rounded bg-zinc-800" />
-          <div className="mt-3 h-5 w-48 animate-pulse rounded bg-zinc-900" />
-        </div>
+        <section className="w-full px-6 pb-12">
 
-        <MediaGrid loading />
-      </section>
-    );
-  }
+            <div className="mx-auto grid w-full max-w-[1600px] grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
 
-  if (error) {
-    return (
-      <div className="flex justify-center px-5 py-12">
-        <ErrorState />
-      </div>
-    );
-  }
+                {results.map((item) => (
+                    <ResultCard
+                        key={`${item.type}-${item.id}`}
+                        item={item}
+                    />
+                ))}
 
-  return (
-    <section className="px-5 py-8 sm:px-8">
-      <div className="mb-7">
-        <h1 className="text-3xl font-bold text-white">
-          {activeTab === 'photos' && 'Photo Results'}
-          {activeTab === 'videos' && 'Video Results'}
-          {activeTab === 'gif' && 'GIF Results'}
-        </h1>
+            </div>
 
-        <p className="mt-1 text-zinc-500">
-          Results for "{query}"
-        </p>
-      </div>
+        </section>
+    )
+}
 
-      <MediaGrid items={results} />
-    </section>
-  );
-};
-
-export default ResultGrid;
+export default ResultGrid

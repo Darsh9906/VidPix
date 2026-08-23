@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import ExploreFeed from '../components/ExploreFeed';
 
 const HomePage = () => {
-  const { query } = useSelector((state) => state.search);
+  const { query } = useSelector((store) => store.search);
 
   return (
     <div>
