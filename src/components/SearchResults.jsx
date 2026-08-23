@@ -1,48 +1,45 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import Loader from './Loader';
 import ErrorState from './ErrorState';
 import MediaGrid from './MediaGrid';
 
 import {
-  fetchRandomGif,
-  fetchRandomPhotos,
-  fetchRandomVideos,
+  fetchPhoto,
+  fetchVideo,
+  fetchGif,
 } from '../api/mediaApi';
 
-import {
-  setHomeData,
-  setLoading,
-} from '../redux/features/homeSlice';
+const SearchResults = () => {
+  const query = useSelector((state) => state.search.query);
 
-const ExploreFeed = () => {
-  const dispatch = useDispatch();
-
-  const {
-    photos,
-    videos,
-    gifs,
-    loading,
-    error,
-  } = useSelector((state) => state.home);
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const fetchHomeData = async () => {
+    if (!query?.trim()) {
+      setResults([]);
+      return;
+    }
+
+    const searchMedia = async () => {
       try {
-        dispatch(setLoading());
+        setLoading(true);
+        setError(false);
 
         const [photoData, videoData, gifData] =
           await Promise.all([
-            fetchRandomPhotos(8),
-            fetchRandomVideos(8),
-            fetchRandomGif(),
+            fetchPhoto(query),
+            fetchVideo(query),
+            fetchGif(query),
           ]);
 
-        const photos = photoData.map((item) => ({
+        const photos = photoData.results.map((item) => ({
           id: item.id,
           type: 'photo',
-          title: item.alt_description || 'Photo',
+          title: item.alt_description || item.description || 'Photo',
           thumbnail: item.urls.thumb,
           src: item.urls.full,
           url: item.links.html,
@@ -66,20 +63,25 @@ const ExploreFeed = () => {
           url: item.url,
         }));
 
-        dispatch(
-          setHomeData({
-            photos,
-            videos,
-            gifs,
-          })
-        );
+        setResults([
+          ...photos,
+          ...videos,
+          ...gifs,
+        ]);
       } catch (error) {
         console.error(error);
+        setError(true);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchHomeData();
-  }, [dispatch]);
+    searchMedia();
+  }, [query]);
+
+  if (!query?.trim()) {
+    return null;
+  }
 
   if (loading) {
     return (
@@ -93,27 +95,21 @@ const ExploreFeed = () => {
     return <ErrorState />;
   }
 
-  const exploreItems = [
-    ...photos,
-    ...videos,
-    ...gifs,
-  ];
-
   return (
     <section className="px-5 py-8 sm:px-8">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-white">
-          🔥 Trending Now
+          Search results
         </h1>
 
-        <p className="mt-1 text-sm text-zinc-500">
-          Discover trending photos, videos and GIFs.
+        <p className="mt-1 text-zinc-500">
+          Results for "{query}"
         </p>
       </div>
 
-      <MediaGrid items={exploreItems} />
+      <MediaGrid items={results} />
     </section>
   );
 };
 
-export default ExploreFeed;
+export default SearchResults;

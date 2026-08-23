@@ -1,8 +1,8 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const UNSPLASH_KEY = import.meta.env.VITE_UNSPLASH_API_KEY
-const PEXELS_KEY = import.meta.env.VITE_PEXELS_API_KEY
-const GIPHY_KEY = import.meta.env.VITE_GIPHY_API_KEY
+const UNSPLASH_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
+const PEXELS_KEY = import.meta.env.VITE_PEXELS_API_KEY;
+const GIPHY_KEY = import.meta.env.VITE_GIPHY_API_KEY;
 
 export const fetchPhoto = async (query, page = 1, per_page = 20) => {
   const response = await axios.get(
@@ -11,95 +11,101 @@ export const fetchPhoto = async (query, page = 1, per_page = 20) => {
       params: {
         query,
         page,
-        per_page
+        per_page,
       },
       headers: {
-        Authorization: `Client-ID ${UNSPLASH_KEY}`
-      }
+        Authorization: `Client-ID ${UNSPLASH_KEY}`,
+      },
     }
-  )
+  );
 
-  return response.data
-}
+  return response.data;
+};
 
-export const fetchVideo = async (query, page = 1, per_page = 20) => {
+export const fetchVideo = async (
+  query,
+  page = 1,
+  per_page = 20
+) => {
   const response = await axios.get(
     'https://api.pexels.com/videos/search',
     {
       params: {
         query,
         page,
-        per_page
+        per_page,
       },
       headers: {
-        Authorization: PEXELS_KEY
-      }
+        Authorization: PEXELS_KEY,
+      },
     }
-  )
+  );
 
-  return response.data
-}
+  return response.data;
+};
 
-export const fetchGif = async (query) => {
+export const fetchGif = async (
+  query,
+  page = 1,
+  limit = 20
+) => {
   const response = await axios.get(
     'https://api.giphy.com/v1/gifs/search',
     {
       params: {
         api_key: GIPHY_KEY,
         q: query,
-        limit: 20
-      }
+        limit,
+        offset: (page - 1) * limit,
+      },
     }
-  )
+  );
 
-  return response.data
-}
+  return response.data;
+};
 
-export const fetchRandomPhotos = async (page = 1, per_page = 8) => {
+export const fetchRandomPhotos = async (count = 9) => {
   const response = await axios.get(
-    'https://api.unsplash.com/photos',
+    'https://api.unsplash.com/photos/random',
     {
       params: {
-        page,
-        per_page
+        count,
       },
       headers: {
-        Authorization: `Client-ID ${UNSPLASH_KEY}`
-      }
+        Authorization: `Client-ID ${UNSPLASH_KEY}`,
+      },
     }
-  )
+  );
 
-  return response.data
-}
+  return response.data;
+};
 
-export const fetchRandomVideos = async (page = 1, per_page = 8) => {
+export const fetchRandomVideos = async (per_page = 8) => {
   const response = await axios.get(
     'https://api.pexels.com/videos/popular',
     {
       params: {
-        page,
-        per_page
+        per_page,
       },
       headers: {
-        Authorization: PEXELS_KEY
-      }
+        Authorization: PEXELS_KEY,
+      },
     }
-  )
+  );
 
-  return response.data
-}
+  return response.data;
+};
 
-export const fetchRandomGif = async (page = 1, limit = 8) => {
+export const fetchRandomGif = async () => {
   const response = await axios.get(
     'https://api.giphy.com/v1/gifs/trending',
     {
       params: {
         api_key: GIPHY_KEY,
-        limit,
-        offset: (page - 1) * limit
-      }
+        limit: 8,
+      },
     }
-  )
+  );
 
-  return response.data
-}
+  return response.data;
+};
