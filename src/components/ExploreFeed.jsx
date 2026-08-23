@@ -39,8 +39,8 @@ const ExploreFeed = () => {
 
                 const [photoData, videoData, gifData] =
                     await Promise.all([
-                        fetchRandomPhotos(10),
-                        fetchRandomVideos(10),
+                        fetchRandomPhotos(),
+                        fetchRandomVideos(),
                         fetchRandomGif()
                     ])
 
