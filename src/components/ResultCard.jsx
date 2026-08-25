@@ -74,7 +74,7 @@ const ResultCard = ({ item }) => {
             <button
                 onClick={addToCollection}
                 aria-label="Save to collection"
-                className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/60 text-white backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-green-600 active:scale-95"
+                className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/60 text-white backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-green-600 active:scale-95 cursor-pointer"
             >
                 <Bookmark
                     size={18}
