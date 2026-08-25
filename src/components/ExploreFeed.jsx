@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import Loader from './Loader'
 import ErrorState from './ErrorState'
 import ResultCard from './ResultCard'
+import SkeletonGrid from './SkeletonGrid'
 
 import {
     fetchRandomGif,
@@ -99,9 +99,19 @@ const ExploreFeed = () => {
     if (loading) {
 
         return (
-            <div className="flex min-h-[400px] items-center justify-center">
-                <Loader />
-            </div>
+            <section className="w-full px-6 pb-12">
+
+                <div className="mb-7">
+
+                    <h1 className="text-3xl font-bold text-white">
+                        🔥 Trending Now
+                    </h1>
+
+                </div>
+
+                <SkeletonGrid count={10} />
+
+            </section>
         )
 
     }
