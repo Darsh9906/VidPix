@@ -469,4 +469,4 @@ This project is created for learning and portfolio purposes.
 
 **Darsh Bhatt**
 
-Built with React, Redux Toolkit, Tailwind CSS, and a lot of learning through building. 🚀
+Built with React, Redux Toolkit, Tailwind CSS, and a lot of learning through building. 
