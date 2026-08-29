@@ -410,27 +410,6 @@ The UI was redesigned multiple times while developing the application based on u
 
 ---
 
-## 🔮 Future Improvements
-
-Some improvements planned for future versions:
-
-* [ ] Infinite scrolling
-* [ ] Pagination improvements
-* [ ] Better media filtering
-* [ ] Advanced search options
-* [ ] Search history
-* [ ] Improved collection management
-* [ ] Remove items from collection
-* [ ] Persistent collections
-* [ ] Better mobile experience
-* [ ] Improved accessibility
-* [ ] Better API caching
-* [ ] React Query / TanStack Query for server-state management
-* [ ] Improved performance and image optimization
-* [ ] Skeleton loading states
-
----
-
 ## 🎯 Project Goal
 
 VidPix was created as a practical way to strengthen my React development skills.
