@@ -5,10 +5,6 @@ const PEXELS_KEY = import.meta.env.VITE_PEXELS_API_KEY
 const GIPHY_KEY = import.meta.env.VITE_GIPHY_API_KEY
 
 
-// ====================
-// SEARCH APIs
-// ====================
-
 export const fetchPhoto = async (query, page = 1, per_page = 20) => {
 
     const response = await axios.get(
@@ -66,10 +62,6 @@ export const fetchGif = async (query, page = 1, per_page = 20) => {
     return response.data
 }
 
-
-// ====================
-// EXPLORE FEED APIs
-// ====================
 
 export const fetchRandomPhotos = async (page = 1, per_page = 10) => {
 
