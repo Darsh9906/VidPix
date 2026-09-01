@@ -5,7 +5,13 @@ const PEXELS_KEY = import.meta.env.VITE_PEXELS_API_KEY
 const GIPHY_KEY = import.meta.env.VITE_GIPHY_API_KEY
 
 
-export const fetchPhoto = async (query, page = 1, per_page = 20) => {
+// SEARCH PHOTOS
+
+export const fetchPhoto = async (
+    query,
+    page = 1,
+    per_page = 20
+) => {
 
     const response = await axios.get(
         'https://api.unsplash.com/search/photos',
@@ -25,7 +31,13 @@ export const fetchPhoto = async (query, page = 1, per_page = 20) => {
 }
 
 
-export const fetchVideo = async (query, page = 1, per_page = 20) => {
+// SEARCH VIDEOS
+
+export const fetchVideo = async (
+    query,
+    page = 1,
+    per_page = 20
+) => {
 
     const response = await axios.get(
         'https://api.pexels.com/videos/search',
@@ -45,7 +57,13 @@ export const fetchVideo = async (query, page = 1, per_page = 20) => {
 }
 
 
-export const fetchGif = async (query, page = 1, per_page = 20) => {
+// SEARCH GIFS
+
+export const fetchGif = async (
+    query,
+    page = 1,
+    per_page = 20
+) => {
 
     const response = await axios.get(
         'https://api.giphy.com/v1/gifs/search',
@@ -63,7 +81,12 @@ export const fetchGif = async (query, page = 1, per_page = 20) => {
 }
 
 
-export const fetchRandomPhotos = async (page = 1, per_page = 10) => {
+// EXPLORE PHOTOS
+
+export const fetchRandomPhotos = async (
+    page = 1,
+    per_page = 10
+) => {
 
     const response = await axios.get(
         'https://api.unsplash.com/photos',
@@ -82,7 +105,12 @@ export const fetchRandomPhotos = async (page = 1, per_page = 10) => {
 }
 
 
-export const fetchRandomVideos = async (page = 1, per_page = 10) => {
+// EXPLORE VIDEOS
+
+export const fetchRandomVideos = async (
+    page = 1,
+    per_page = 10
+) => {
 
     const response = await axios.get(
         'https://api.pexels.com/videos/popular',
@@ -101,7 +129,12 @@ export const fetchRandomVideos = async (page = 1, per_page = 10) => {
 }
 
 
-export const fetchRandomGif = async (offset = 0, limit = 10) => {
+// EXPLORE GIFS
+
+export const fetchRandomGif = async (
+    offset = 0,
+    limit = 10
+) => {
 
     const response = await axios.get(
         'https://api.giphy.com/v1/gifs/trending',
