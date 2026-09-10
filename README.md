@@ -212,22 +212,6 @@ This also helped me understand how Redux Toolkit can be used for shared applicat
 
 ---
 
-## ⚡ Loading & Error Handling
-
-VidPix includes dedicated UI states for asynchronous API operations.
-
-### Loading
-
-A reusable loader is displayed while media is being fetched.
-
-### Error
-
-A custom error state is displayed when an API request fails.
-
-This prevents the application from simply showing a blank screen when something goes wrong.
-
----
-
 ## 🎨 UI / UX
 
 The interface was designed with a focus on:
