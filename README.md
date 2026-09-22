@@ -258,7 +258,7 @@ VITE_GIPHY_API_KEY=your_giphy_api_key
 
 > Never commit your `.env` file or expose private API credentials in your repository.
 
-Make sure `.env` is included in `.gitignore`.
+Make sure `.env` is included in `.gitignore`
 
 ---
 
