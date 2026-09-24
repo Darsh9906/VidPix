@@ -4,7 +4,7 @@
 
 VidPix is a React-based media discovery application built while learning and applying modern React development concepts. The project brings different media sources together into a single, simple interface where users can search for photos, videos, and GIFs, explore trending content, and save their favorite media to a personal collection.
 
-The main focus of this project was **learning by building** — especially React, Redux Toolkit, API integration, asynchronous data handling, reusable components, and UI/UX development.
+The main focus of this project was **learning by building**  especially React, Redux Toolkit, API integration, asynchronous data handling, reusable components, and UI/UX development.
 
 ---
 
