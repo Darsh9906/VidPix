@@ -59,7 +59,7 @@ The main focus of this project was **learning by building**  especially React, R
 
 ## 🏗️ Application Structure
 
-The application is organized around reusable React components and centralized state management.
+The application is organized around reusable React components and centralized state management
 
 ```text
 src/
