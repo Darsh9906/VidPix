@@ -214,7 +214,7 @@ This also helped me understand how Redux Toolkit can be used for shared applicat
 
 ## 🎨 UI / UX
 
-The interface was designed with a focus on:
+The interface was designed with a focus on
 
 * Clean visual hierarchy
 * Simple dark-themed design
